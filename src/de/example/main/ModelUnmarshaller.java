@@ -4,17 +4,19 @@ import javax.xml.bind.*;
 import javax.xml.transform.stream.StreamSource;
 
 import de.example.model.*;
+
 import java.io.File;
 
 public class ModelUnmarshaller {
     /**
      * Unmarshalling of provided EA Model
+     *
      * @param args needs the EA Model as XML-File as input
      * @throws JAXBException
      */
     public static void main(String[] args) throws JAXBException {
-        if( args.length != 1 ) {
-            System.out.println( "\nPlease add the EA Model as XML-File, e.g.: \"CentralModel.xml\"" );
+        if (args.length != 1) {
+            System.out.println("\nPlease add the EA Model as XML-File, e.g.: \"CentralModel.xml\"");
             return;
         }
 
