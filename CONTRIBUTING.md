@@ -8,7 +8,8 @@ The Java content objects represent the content and organization of the XML docum
 ``unmarshal(String xmlFile, Class<T> c, String xsdSchema)``
 3. Modify the content tree with ``ObjectFactory``
 4. Marshal the content tree into an XML-File (can be the same as before) \
-``marshal(Object jaxbElement, String xmlFile, String xsdSchema)``
+``marshal(Object jaxbElement, String xmlFile, String xsdSchema)`` \
+Can be necessary to add ``@XmlRootElement(name = "model")`` to ``ModelType`` for proper marshalling according to previous XML.
 
 The marshalling and unmarshalling functionality is provided in the ``de.example.jaxb`` package.
 Currently the bound classes for the model are located in the ``de.example.model`` package.

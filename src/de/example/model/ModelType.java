@@ -8,21 +8,20 @@
 
 package de.example.model;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.*;
 
 
 /**
- * 
- *                 This is the root model type.
- *                 It is a container for the elements, relationships, diagrams and organizations of the model.
- *             
- * 
+ * This is the root model type.
+ * It is a container for the elements, relationships, diagrams and organizations of the model.
+ *
+ *
  * <p>Java-Klasse für ModelType complex type.
- * 
+ *
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
- * 
+ *
  * <pre>
  * &lt;complexType name="ModelType">
  *   &lt;complexContent>
@@ -41,22 +40,19 @@ import javax.xml.bind.annotation.*;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ModelType", propOrder = {
-    "properties",
-    "metadata",
-    "elements",
-    "relationships",
-    "organizations",
-    "propertyDefinitions"
+        "properties",
+        "metadata",
+        "elements",
+        "relationships",
+        "organizations",
+        "propertyDefinitions"
 })
-@XmlRootElement
+@XmlRootElement(name = "model")
 public class ModelType
-    extends NamedReferenceableType
-{
+        extends NamedReferenceableType {
 
     protected PropertiesType properties;
     protected MetadataType metadata;
@@ -69,11 +65,9 @@ public class ModelType
 
     /**
      * Ruft den Wert der properties-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PropertiesType }
-     *     
+     *
+     * @return possible object is
+     * {@link PropertiesType }
      */
     public PropertiesType getProperties() {
         return properties;
@@ -81,11 +75,9 @@ public class ModelType
 
     /**
      * Legt den Wert der properties-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PropertiesType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link PropertiesType }
      */
     public void setProperties(PropertiesType value) {
         this.properties = value;
@@ -93,11 +85,9 @@ public class ModelType
 
     /**
      * Ruft den Wert der metadata-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MetadataType }
-     *     
+     *
+     * @return possible object is
+     * {@link MetadataType }
      */
     public MetadataType getMetadata() {
         return metadata;
@@ -105,11 +95,9 @@ public class ModelType
 
     /**
      * Legt den Wert der metadata-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MetadataType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link MetadataType }
      */
     public void setMetadata(MetadataType value) {
         this.metadata = value;
@@ -117,11 +105,9 @@ public class ModelType
 
     /**
      * Ruft den Wert der elements-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ElementsType }
-     *     
+     *
+     * @return possible object is
+     * {@link ElementsType }
      */
     public ElementsType getElements() {
         return elements;
@@ -129,11 +115,9 @@ public class ModelType
 
     /**
      * Legt den Wert der elements-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementsType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ElementsType }
      */
     public void setElements(ElementsType value) {
         this.elements = value;
@@ -141,11 +125,9 @@ public class ModelType
 
     /**
      * Ruft den Wert der relationships-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RelationshipsType }
-     *     
+     *
+     * @return possible object is
+     * {@link RelationshipsType }
      */
     public RelationshipsType getRelationships() {
         return relationships;
@@ -153,11 +135,9 @@ public class ModelType
 
     /**
      * Legt den Wert der relationships-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RelationshipsType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link RelationshipsType }
      */
     public void setRelationships(RelationshipsType value) {
         this.relationships = value;
@@ -165,25 +145,23 @@ public class ModelType
 
     /**
      * Gets the value of the organizations property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the organizations property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getOrganizations().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link OrganizationsType }
-     * 
-     * 
      */
     public List<OrganizationsType> getOrganizations() {
         if (organizations == null) {
@@ -194,11 +172,9 @@ public class ModelType
 
     /**
      * Ruft den Wert der propertyDefinitions-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PropertyDefinitionsType }
-     *     
+     *
+     * @return possible object is
+     * {@link PropertyDefinitionsType }
      */
     public PropertyDefinitionsType getPropertyDefinitions() {
         return propertyDefinitions;
@@ -206,11 +182,9 @@ public class ModelType
 
     /**
      * Legt den Wert der propertyDefinitions-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PropertyDefinitionsType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link PropertyDefinitionsType }
      */
     public void setPropertyDefinitions(PropertyDefinitionsType value) {
         this.propertyDefinitions = value;
@@ -218,11 +192,9 @@ public class ModelType
 
     /**
      * Ruft den Wert der version-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getVersion() {
         return version;
@@ -230,11 +202,9 @@ public class ModelType
 
     /**
      * Legt den Wert der version-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setVersion(String value) {
         this.version = value;
