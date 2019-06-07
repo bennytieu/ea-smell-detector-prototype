@@ -1,13 +1,14 @@
-Using JAXB, you would:
-
-1. Bind the schema for the XML document.
-2. Unmarshal the document into Java content objects. The Java content objects represent the content and organization of the XML document, and are directly available to your program.
-
-For 1. Binding \
-``xjc.sh -p de.example.model archimate3_model.xsd -d src``
-
+# Using JAXB:
+1. Bind the schema for the XML document: \
+``xjc.sh -p de.example.model archimate3_model.xsd -d src`` \
 If needed compile with \
 ``javac example/model/*.java``
+2. Unmarshal the document into Java content objects.
+The Java content objects represent the content and organization of the XML document, and are directly available to your program. \
+``unmarshal(String xmlFile, Class<T> c, String xsdSchema)``
+3. Modify the content tree with ``ObjectFactory``
+4. Marshal the content tree into an XML-File (can be the same as before) \
+``marshal(Object jaxbElement, String xmlFile, String xsdSchema)``
 
-For 2. Unmarshalling \
-use the program
+The marshalling and unmarshalling functionality is provided in the ``de.example.jaxb`` package.
+Currently the bound classes for the model are located in the ``de.example.model`` package.
