@@ -11,5 +11,5 @@ The Java content objects represent the content and organization of the XML docum
 ``marshal(Object jaxbElement, String xmlFile, String xsdSchema)`` \
 Can be necessary to add ``@XmlRootElement(name = "model")`` to ``ModelType`` for proper marshalling according to previous XML.
 
-The marshalling and unmarshalling functionality is provided in the ``de.example.jaxb`` package.
+The marshalling and unmarshalling functionality is provided in the ``de.example.util`` package.
 Currently the bound classes for the model are located in the ``de.example.model`` package.

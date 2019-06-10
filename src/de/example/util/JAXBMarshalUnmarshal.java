@@ -1,5 +1,6 @@
-package de.example.jaxb;
+package de.example.util;
 
+import de.example.model.ElementType;
 import de.example.model.ModelType;
 import org.xml.sax.SAXException;
 
@@ -19,6 +20,9 @@ public class JAXBMarshalUnmarshal {
     public static void main(String[] args) throws JAXBException, SAXException {
         ModelType model = unmarshal("CentralModel.xml", ModelType.class, null);
         System.out.println(model.getElements().getElement().get(0).getIdentifier());
+        Util util = new Util();
+        ElementType element = util.getElementByIdentifier(model, "id-5e50603d-bd28-49ef-91e7-5db25b447f6a");
+        System.out.println(element);
         //marshal(model, "Test.xml", null);
     }
 
