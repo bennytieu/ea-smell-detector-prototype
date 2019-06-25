@@ -1,7 +1,6 @@
-package de.example.util;
+package de.example.main;
 
 import de.example.model.ElementType;
-import de.example.model.ModelType;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -18,11 +17,9 @@ public class JAXBMarshalUnmarshal {
 
     // mainly used for testing
     public static void main(String[] args) throws JAXBException, SAXException {
-        ModelType model = unmarshal("CentralModel.xml", ModelType.class, null);
-        System.out.println(model.getElements().getElement().get(0).getIdentifier());
-        ElementType element = ModelAdapter.getElementByIdentifier(model, "id-5e50603d-bd28-49ef-91e7-5db25b447f6a");
+        ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
+        ElementType element = ModelAdapter.getElementByIdentifier("id-5e50603d-bd28-49ef-91e7-5db25b447f6a");
         System.out.println(element.getIdentifier());
-        //marshal(model, "Test.xml", "archimate3_Diagram.xsd");
     }
 
     /**
@@ -36,7 +33,7 @@ public class JAXBMarshalUnmarshal {
      * @throws JAXBException for unmarshalling error
      * @throws SAXException  for schema error
      */
-    public static <T> T unmarshal(String xmlFile, Class<T> c, String xsdSchema) throws JAXBException, SAXException {
+    static <T> T unmarshal(String xmlFile, Class<T> c, String xsdSchema) throws JAXBException, SAXException {
         JAXBContext jc = JAXBContext.newInstance(c.getPackage().getName());
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -55,7 +52,7 @@ public class JAXBMarshalUnmarshal {
      * @throws JAXBException for marshalling error
      * @throws SAXException  for schema error
      */
-    public static void marshal(Object jaxbElement, String xmlFile, String xsdSchema) throws JAXBException, SAXException {
+    static void marshal(Object jaxbElement, String xmlFile, String xsdSchema) throws JAXBException, SAXException {
         JAXBContext jc = JAXBContext.newInstance(jaxbElement.getClass().getPackage().getName());
         Marshaller marshaller = jc.createMarshaller();
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
