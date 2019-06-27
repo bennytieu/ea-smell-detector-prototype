@@ -22,6 +22,7 @@ public class JAXBMarshalUnmarshal {
         System.out.println(model.getElements().getElement().get(0).getIdentifier());
         ElementType element = ModelAdapter.getElementByIdentifier(model, "id-5e50603d-bd28-49ef-91e7-5db25b447f6a");
         System.out.println(element.getIdentifier());
+        System.out.println(model.getViews().getDiagrams().getView().get(0).getNameGroup().get(0).getValue());
         //marshal(model, "Test.xml", "archimate3_Diagram.xsd");
     }
 

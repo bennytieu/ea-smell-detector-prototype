@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2019.06.04 um 12:34:18 PM CEST 
+// Generiert: 2019.06.27 um 09:03:30 AM CEST 
 //
 
 
@@ -129,6 +129,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ViewsType }
+     * 
+     */
+    public ViewsType createViewsType() {
+        return new ViewsType();
+    }
+
+    /**
+     * Create an instance of {@link ConcernType }
+     * 
+     */
+    public ConcernType createConcernType() {
+        return new ConcernType();
+    }
+
+    /**
      * Create an instance of {@link ImplementationEvent }
      * 
      */
@@ -137,11 +153,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link StakeholderType }
+     * 
+     */
+    public StakeholderType createStakeholderType() {
+        return new StakeholderType();
+    }
+
+    /**
      * Create an instance of {@link AndJunction }
      * 
      */
     public AndJunction createAndJunction() {
         return new AndJunction();
+    }
+
+    /**
+     * Create an instance of {@link DiagramsType }
+     * 
+     */
+    public DiagramsType createDiagramsType() {
+        return new DiagramsType();
     }
 
     /**
@@ -209,11 +241,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AllowedRelationshipTypeType }
+     * 
+     */
+    public AllowedRelationshipTypeType createAllowedRelationshipTypeType() {
+        return new AllowedRelationshipTypeType();
+    }
+
+    /**
      * Create an instance of {@link RelationshipsType }
      * 
      */
     public RelationshipsType createRelationshipsType() {
         return new RelationshipsType();
+    }
+
+    /**
+     * Create an instance of {@link Line }
+     * 
+     */
+    public Line createLine() {
+        return new Line();
     }
 
     /**
@@ -262,6 +310,14 @@ public class ObjectFactory {
      */
     public CommunicationNetwork createCommunicationNetwork() {
         return new CommunicationNetwork();
+    }
+
+    /**
+     * Create an instance of {@link ViewpointType }
+     * 
+     */
+    public ViewpointType createViewpointType() {
+        return new ViewpointType();
     }
 
     /**
@@ -361,11 +417,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link StyleType }
+     * 
+     */
+    public StyleType createStyleType() {
+        return new StyleType();
+    }
+
+    /**
      * Create an instance of {@link TechnologyInteraction }
      * 
      */
     public TechnologyInteraction createTechnologyInteraction() {
         return new TechnologyInteraction();
+    }
+
+    /**
+     * Create an instance of {@link ViewpointsType }
+     * 
+     */
+    public ViewpointsType createViewpointsType() {
+        return new ViewpointsType();
     }
 
     /**
@@ -393,11 +465,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Diagram }
+     * 
+     */
+    public Diagram createDiagram() {
+        return new Diagram();
+    }
+
+    /**
      * Create an instance of {@link Outcome }
      * 
      */
     public Outcome createOutcome() {
         return new Outcome();
+    }
+
+    /**
+     * Create an instance of {@link Relationship }
+     * 
+     */
+    public Relationship createRelationship() {
+        return new Relationship();
     }
 
     /**
@@ -425,6 +513,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Label }
+     * 
+     */
+    public Label createLabel() {
+        return new Label();
+    }
+
+    /**
      * Create an instance of {@link BusinessActor }
      * 
      */
@@ -438,6 +534,14 @@ public class ObjectFactory {
      */
     public PropertyType createPropertyType() {
         return new PropertyType();
+    }
+
+    /**
+     * Create an instance of {@link StakeholdersType }
+     * 
+     */
+    public StakeholdersType createStakeholdersType() {
+        return new StakeholdersType();
     }
 
     /**
@@ -470,6 +574,14 @@ public class ObjectFactory {
      */
     public TechnologyFunction createTechnologyFunction() {
         return new TechnologyFunction();
+    }
+
+    /**
+     * Create an instance of {@link Container }
+     * 
+     */
+    public Container createContainer() {
+        return new Container();
     }
 
     /**
@@ -601,6 +713,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Element }
+     * 
+     */
+    public Element createElement() {
+        return new Element();
+    }
+
+    /**
      * Create an instance of {@link SystemSoftware }
      * 
      */
@@ -625,6 +745,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link NestingRelationship }
+     * 
+     */
+    public NestingRelationship createNestingRelationship() {
+        return new NestingRelationship();
+    }
+
+    /**
      * Create an instance of {@link OrganizationsType }
      * 
      */
@@ -641,6 +769,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RGBColorType }
+     * 
+     */
+    public RGBColorType createRGBColorType() {
+        return new RGBColorType();
+    }
+
+    /**
+     * Create an instance of {@link AllowedElementTypeType }
+     * 
+     */
+    public AllowedElementTypeType createAllowedElementTypeType() {
+        return new AllowedElementTypeType();
+    }
+
+    /**
      * Create an instance of {@link TechnologyEvent }
      * 
      */
@@ -654,6 +798,14 @@ public class ObjectFactory {
      */
     public Composition createComposition() {
         return new Composition();
+    }
+
+    /**
+     * Create an instance of {@link ModelingNoteType }
+     * 
+     */
+    public ModelingNoteType createModelingNoteType() {
+        return new ModelingNoteType();
     }
 
     /**
@@ -681,6 +833,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link FontType }
+     * 
+     */
+    public FontType createFontType() {
+        return new FontType();
+    }
+
+    /**
      * Create an instance of {@link BusinessService }
      * 
      */
@@ -705,6 +865,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link LocationType }
+     * 
+     */
+    public LocationType createLocationType() {
+        return new LocationType();
+    }
+
+    /**
      * Create an instance of {@link Meaning }
      * 
      */
@@ -726,6 +894,22 @@ public class ObjectFactory {
      */
     public Location createLocation() {
         return new Location();
+    }
+
+    /**
+     * Create an instance of {@link OriginalViewsType }
+     * 
+     */
+    public OriginalViewsType createOriginalViewsType() {
+        return new OriginalViewsType();
+    }
+
+    /**
+     * Create an instance of {@link OriginalModelType }
+     * 
+     */
+    public OriginalModelType createOriginalModelType() {
+        return new OriginalModelType();
     }
 
     /**
