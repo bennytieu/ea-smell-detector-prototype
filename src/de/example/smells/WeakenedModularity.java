@@ -4,14 +4,14 @@ import de.example.main.ModelAdapter;
 
 import java.util.List;
 
-public class DenseStructure extends Detector {
+public class WeakenedModularity extends Detector {
 
-    public DenseStructure(ModelAdapter model) {
+    public WeakenedModularity(ModelAdapter model) {
         super(model);
     }
 
     public List<EASmell> detect() {
-        addToSmells(new EASmell("DenseStructure"));
+        addToSmells(new EASmell("WeakenedModularity"));
         return smells;
     }
 }

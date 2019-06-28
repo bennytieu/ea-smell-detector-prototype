@@ -10,14 +10,15 @@ package de.example.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
  * <p>Java-Klasse für ModelType complex type.
- * 
+ *
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
- * 
+ *
  * <pre>
  * &lt;complexType name="ModelType">
  *   &lt;complexContent>
@@ -48,26 +49,22 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ModelType", propOrder = {
-    "views"
+        "views"
 })
+@XmlRootElement(name = "model")
 public class ModelType
-    extends OriginalModelType
-{
+        extends OriginalModelType {
 
     protected ViewsType views;
 
     /**
      * Ruft den Wert der views-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ViewsType }
-     *     
+     *
+     * @return possible object is
+     * {@link ViewsType }
      */
     public ViewsType getViews() {
         return views;
@@ -75,11 +72,9 @@ public class ModelType
 
     /**
      * Legt den Wert der views-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ViewsType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ViewsType }
      */
     public void setViews(ViewsType value) {
         this.views = value;

@@ -6,15 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Detector {
-    List<EASmell> smells;
-    ModelAdapter model;
+    static List<EASmell> smells;
+    private ModelAdapter model;
 
     public Detector(ModelAdapter model) {
         smells = new ArrayList<>();
         this.model = model;
     }
 
-    protected void addToSmells(EASmell smell) {
+    public static List<EASmell> getSmells() {
+        return smells;
+    }
+
+    void addToSmells(EASmell smell) {
         smells.add(smell);
     }
 

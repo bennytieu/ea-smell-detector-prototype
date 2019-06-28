@@ -24,21 +24,15 @@ public class ModelAdapter {
         }
     }
 
-    // for testing
-    public static void main(String[] args) throws JAXBException, SAXException {
-        model = JAXBMarshalUnmarshal.unmarshal("CentralModel.xml", ModelType.class, null);
-        System.out.println(getIdentifiersInLayer("application"));
-    }
-
-    public static ModelType getModel() {
+    public ModelType getModel() {
         return model;
     }
 
-    public static List<ElementType> getElements() {
+    public List<ElementType> getElements() {
         return model.getElements().getElement();
     }
 
-    public static ElementType getElementByIdentifier(String id) {
+    public ElementType getElementByIdentifier(String id) {
         List<ElementType> elements = model.getElements().getElement().stream().filter(e -> e.getIdentifier().equals(id)).collect(Collectors.toList());
         if (elements.isEmpty()) {
             return null;
@@ -47,43 +41,43 @@ public class ModelAdapter {
         }
     }
 
-    public static List<PropertyDefinitionType> getPropertyDefinitions() {
+    public List<PropertyDefinitionType> getPropertyDefinitions() {
         return model.getPropertyDefinitions().getPropertyDefinition();
     }
 
-    public static MetadataType getMetadata() {
+    public MetadataType getMetadata() {
         return model.getMetadata();
     }
 
-    public static List<PropertyType> getProperties() {
+    public List<PropertyType> getProperties() {
         return model.getProperties().getProperty();
     }
 
-    public static List<RelationshipType> getRelationships() {
+    public List<RelationshipType> getRelationships() {
         return model.getRelationships().getRelationship();
     }
 
-    public static String getVersion() {
+    public String getVersion() {
         return model.getVersion();
     }
 
-    public static List<Object> getAny() {
+    public List<Object> getAny() {
         return model.getAny();
     }
 
-    public static List<PreservedLangStringType> getDocumentation() {
+    public List<PreservedLangStringType> getDocumentation() {
         return model.getDocumentation();
     }
 
-    public static String getIdentifier() {
+    public String getIdentifier() {
         return model.getIdentifier();
     }
 
-    public static Map<QName, String> getOtherAttributes() {
+    public Map<QName, String> getOtherAttributes() {
         return model.getOtherAttributes();
     }
 
-    public static String getNameGroup() {
+    public String getNameGroup() {
         StringBuilder res = new StringBuilder();
         for (LangStringType langString : model.getNameGroup()) {
             res.append(langString.getLang()).append(": ").append(langString.getValue()).append("\n");
@@ -91,7 +85,7 @@ public class ModelAdapter {
         return res.toString();
     }
 
-    public static List<String> getIdentifiersInLayer(String layer) {
+    public List<String> getIdentifiersInLayer(String layer) {
         List<OrganizationType> l = model.getOrganizations().get(0).getItem().stream().filter(e -> e.getLabelGroup().get(0).getValue().toLowerCase().contains(layer.toLowerCase())).collect(Collectors.toList());
         if (l.isEmpty()) {
             return null;
@@ -104,6 +98,10 @@ public class ModelAdapter {
             }
             return res;
         }
+    }
+
+    public List<Diagram> getViews() {
+        return model.getViews().getDiagrams().getView();
     }
 
 }

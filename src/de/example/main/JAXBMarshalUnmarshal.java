@@ -16,12 +16,12 @@ import java.io.File;
 public class JAXBMarshalUnmarshal {
 
     // mainly used for testing
-    public static void main(String[] args) throws JAXBException, SAXException {
+    public static void main(String[] args) {
         ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
-        ElementType element = ModelAdapter.getElementByIdentifier("id-5e50603d-bd28-49ef-91e7-5db25b447f6a");
+        ElementType element = model.getElementByIdentifier("id-5e50603d-bd28-49ef-91e7-5db25b447f6a");
         System.out.println(element.getIdentifier());
-        System.out.println(model.getViews().getDiagrams().getView().get(0).getNameGroup().get(0).getValue());
-        //marshal(model, "Test.xml", "archimate3_Diagram.xsd");
+        System.out.println(model.getViews().get(0).getNameGroup().get(0).getValue());
+        //marshal(model.getModel(), "Test.xml", "archimate3_Diagram.xsd");
     }
 
     /**
@@ -36,11 +36,10 @@ public class JAXBMarshalUnmarshal {
      * @throws SAXException  for schema error
      */
     static <T> T unmarshal(String xmlFile, Class<T> c, String xsdSchema) throws JAXBException, SAXException {
+        System.out.println("Starting unmarshalling of \"" + xmlFile + "\" ...");
         JAXBContext jc = JAXBContext.newInstance(c.getPackage().getName());
         Unmarshaller unmarshaller = jc.createUnmarshaller();
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = (xsdSchema == null || xsdSchema.trim().length() == 0)
-                ? null : schemaFactory.newSchema(new File(xsdSchema));
+        Schema schema = createSchema(xsdSchema);
         unmarshaller.setSchema(schema);
         return unmarshaller.unmarshal(new StreamSource(new File(xmlFile)), c).getValue();
     }
@@ -55,14 +54,25 @@ public class JAXBMarshalUnmarshal {
      * @throws SAXException  for schema error
      */
     static void marshal(Object jaxbElement, String xmlFile, String xsdSchema) throws JAXBException, SAXException {
+        System.out.println("Starting marshalling of \"" + jaxbElement.getClass().getPackage().getName() + "\" ...");
         JAXBContext jc = JAXBContext.newInstance(jaxbElement.getClass().getPackage().getName());
         Marshaller marshaller = jc.createMarshaller();
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = (xsdSchema == null || xsdSchema.trim().length() == 0)
-                ? null : schemaFactory.newSchema(new File(xsdSchema));
+        Schema schema = createSchema(xsdSchema);
         marshaller.setSchema(schema);
         marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(jaxbElement, new File(xmlFile));
+    }
+
+    /*Schema schema = (xsdSchema == null || xsdSchema.trim().length() == 0)
+                ? null : schemaFactory.newSchema(new File(xsdSchema));*/
+    private static Schema createSchema(String xsdSchema) throws SAXException {
+        if (xsdSchema == null || xsdSchema.trim().length() == 0) {
+            return null;
+        } else {
+            System.out.println("Validating against \"" + xsdSchema + "\" ...");
+            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            return schemaFactory.newSchema(new File(xsdSchema));
+        }
     }
 }
