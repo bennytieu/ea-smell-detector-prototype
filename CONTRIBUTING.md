@@ -1,6 +1,6 @@
 # Using JAXB:
 1. Bind the schema for the XML document: \
-``xjc.sh -p de.example.model archimate3_model.xsd -d src`` \
+``xjc -p de.example.model archimate3_Diagram.xsd -d src`` \
 If needed compile with \
 ``javac example/model/*.java``
 2. Unmarshal the document into Java content objects.
