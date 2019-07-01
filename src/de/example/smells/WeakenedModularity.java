@@ -11,7 +11,7 @@ public class WeakenedModularity extends Detector {
     }
 
     public List<EASmell> detect() {
-        addToSmells(new EASmell("WeakenedModularity"));
+        addToSmells(new EASmell("Weakened Modularity", null));
         return smells;
     }
 }

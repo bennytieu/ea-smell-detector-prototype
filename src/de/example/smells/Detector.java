@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class Detector {
     static List<EASmell> smells;
-    private ModelAdapter model;
+    ModelAdapter model;
 
     public Detector(ModelAdapter model) {
         smells = new ArrayList<>();

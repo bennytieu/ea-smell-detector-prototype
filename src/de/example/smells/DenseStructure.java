@@ -11,7 +11,12 @@ public class DenseStructure extends Detector {
     }
 
     public List<EASmell> detect() {
-        addToSmells(new EASmell("DenseStructure"));
+        double avgDegree = ((double) model.getElements().size() / model.getRelationships().size());
+        if (avgDegree > 0.5) {
+            EASmell denseStructure = new EASmell("Dense Structure", null);
+            denseStructure.setContext(" with average degree of " + avgDegree);
+            addToSmells(denseStructure);
+        }
         return smells;
     }
 }

@@ -16,6 +16,6 @@ public class EASmellDetector {
         weakenedModularity.detect();
         denseStructure.detect();
         List<EASmell> res = Detector.getSmells();
-        System.out.println(res.get(0).getSmellName() + "\n" + res.get(1).getSmellName());
+        System.out.println(res.get(0).toString() + "\n" + res.get(1).toString());
     }
 }

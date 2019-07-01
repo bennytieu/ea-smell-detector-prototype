@@ -41,6 +41,30 @@ public class ModelAdapter {
         }
     }
 
+    public List<ElementType> getElementsWithReferenceTo(ElementType target) {
+        List<ElementType> res = new ArrayList<>();
+        for (RelationshipType rel : getRelationships()) {
+            ElementType tar = (ElementType) rel.getTarget();
+            if (tar.equals(target)) {
+                ElementType sour = (ElementType) rel.getSource();
+                res.add(sour);
+            }
+        }
+        return res;
+    }
+
+    public List<ElementType> getReferencedElementsOf(ElementType source) {
+        List<ElementType> res = new ArrayList<>();
+        for (RelationshipType rel : getRelationships()) {
+            ElementType sour = (ElementType) rel.getSource();
+            if (sour.equals(source)) {
+                ElementType tar = (ElementType) rel.getTarget();
+                res.add(tar);
+            }
+        }
+        return res;
+    }
+
     public List<PropertyDefinitionType> getPropertyDefinitions() {
         return model.getPropertyDefinitions().getPropertyDefinition();
     }
