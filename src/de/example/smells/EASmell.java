@@ -34,6 +34,6 @@ public class EASmell {
     }
 
     public String toString() {
-        return smellName + " detected" + ((element == null) ? "" : " at \"" + getElementName() + "\" (" + element.getIdentifier() + ")") + (context == null ? "" : context);
+        return smellName + " detected" + ((element == null) ? "" : " at the " + element.getClass().getSimpleName() + " \"" + getElementName() + "\" (" + element.getIdentifier() + ")") + (context == null ? "" : context);
     }
 }

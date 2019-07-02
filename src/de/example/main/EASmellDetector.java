@@ -1,9 +1,6 @@
 package de.example.main;
 
-import de.example.smells.DenseStructure;
-import de.example.smells.Detector;
-import de.example.smells.EASmell;
-import de.example.smells.WeakenedModularity;
+import de.example.smells.*;
 
 import java.util.List;
 
@@ -13,9 +10,13 @@ public class EASmellDetector {
 
         DenseStructure denseStructure = new DenseStructure(model);
         WeakenedModularity weakenedModularity = new WeakenedModularity(model);
+        HubLikeModularization hubLikeModularization = new HubLikeModularization(model);
         weakenedModularity.detect();
         denseStructure.detect();
-        List<EASmell> res = Detector.getSmells();
-        System.out.println(res.get(0).toString() + "\n" + res.get(1).toString());
+        hubLikeModularization.detect();
+        List<EASmell> smells = Detector.getSmells();
+        for (EASmell smell : smells) {
+            System.out.println(smell.toString());
+        }
     }
 }

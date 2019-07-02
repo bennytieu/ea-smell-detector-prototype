@@ -4,6 +4,8 @@ import de.example.main.ModelAdapter;
 
 import java.util.List;
 
+import static de.example.smells.Constants.MAX_AVG_DEGREE;
+
 public class DenseStructure extends Detector {
 
     public DenseStructure(ModelAdapter model) {
@@ -11,8 +13,10 @@ public class DenseStructure extends Detector {
     }
 
     public List<EASmell> detect() {
-        double avgDegree = ((double) model.getElements().size() / model.getRelationships().size());
-        if (avgDegree > 0.5) {
+        double v = model.getElements().size();
+        double e = model.getRelationships().size();
+        double avgDegree = e / (v/* * (v - 1)*/);
+        if (avgDegree > MAX_AVG_DEGREE) {
             EASmell denseStructure = new EASmell("Dense Structure", null);
             denseStructure.setContext(" with average degree of " + avgDegree);
             addToSmells(denseStructure);
