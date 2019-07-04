@@ -13,6 +13,12 @@ public class EASmell {
         this.element = element;
     }
 
+    EASmell(String smellName, ElementType element, String context) {
+        this.smellName = smellName;
+        this.element = element;
+        this.context = context;
+    }
+
     public String getSmellName() {
         return smellName;
     }
@@ -27,10 +33,6 @@ public class EASmell {
 
     public String getContext() {
         return context;
-    }
-
-    public void setContext(String context) {
-        this.context = context;
     }
 
     public String toString() {

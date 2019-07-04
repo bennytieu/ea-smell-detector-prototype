@@ -1,6 +1,5 @@
 package de.example.smells;
 
-import de.example.main.ModelAdapter;
 import de.example.model.ElementType;
 
 import java.util.List;
@@ -10,8 +9,8 @@ import static de.example.smells.Constants.LARGE_FAN_OUT;
 
 public class HubLikeModularization extends Detector {
 
-    public HubLikeModularization(ModelAdapter model) {
-        super(model);
+    public HubLikeModularization() {
+        super("Hub-like Modularization");
     }
 
     public List<EASmell> detect() {
@@ -20,11 +19,9 @@ public class HubLikeModularization extends Detector {
             int fanIn = model.getElementsWithReferenceTo(element).size();
             int fanOut = model.getReferencedElementsOf(element).size();
             if (fanIn > LARGE_FAN_IN && fanOut > LARGE_FAN_OUT) {
-                EASmell hlm = new EASmell("Hub-like Modularization", element);
-                hlm.setContext(" with a total of " + (fanIn + fanOut) + " relations");
-                addToSmells(hlm);
+                addToSmells(new EASmell("Hub-like Modularization", element, " with a total of " + (fanIn + fanOut) + " relations"));
             }
         }
-        return smells;
+        return result;
     }
 }

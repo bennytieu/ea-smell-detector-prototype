@@ -2,19 +2,31 @@ package de.example.main;
 
 import de.example.smells.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EASmellDetector {
     public static void main(String[] args) {
-        ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
+        ModelAdapter model = new ModelAdapter("Test.xml", null);
+        Detector.setModel(model);
 
-        DenseStructure denseStructure = new DenseStructure(model);
-        WeakenedModularity weakenedModularity = new WeakenedModularity(model);
-        HubLikeModularization hubLikeModularization = new HubLikeModularization(model);
-        weakenedModularity.detect();
-        denseStructure.detect();
-        hubLikeModularization.detect();
-        List<EASmell> smells = Detector.getSmells();
+        List<Detector> detectors = new ArrayList<>();
+        detectors.add(new CyclicDependency());
+        detectors.add(new DenseStructure());
+        detectors.add(new WeakenedModularity());
+        detectors.add(new HubLikeModularization());
+
+        System.out.println("\n");
+        for (Detector detector : detectors) {
+            System.out.println("Start detection of " + detector.getSmellName() + " ...");
+            printSmells(detector.detect());
+            System.out.println("Finished detection of " + detector.getSmellName() + "\n");
+        }
+
+        printSmells(Detector.getSmells());
+    }
+
+    private static void printSmells(List<EASmell> smells) {
         for (EASmell smell : smells) {
             System.out.println(smell.toString());
         }
