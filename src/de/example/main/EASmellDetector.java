@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EASmellDetector {
     public static void main(String[] args) {
-        ModelAdapter model = new ModelAdapter("Test.xml", null);
+        ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
         Detector.setModel(model);
 
         List<Detector> detectors = new ArrayList<>();
@@ -16,11 +16,15 @@ public class EASmellDetector {
         detectors.add(new WeakenedModularity());
         detectors.add(new HubLikeModularization());
 
-        System.out.println("\n");
+        System.out.print("\n");
         for (Detector detector : detectors) {
             System.out.println("Start detection of " + detector.getSmellName() + " ...");
+            long startTime = System.nanoTime();
+            long startMemory = calculateMemoryConsumption();
             printSmells(detector.detect());
-            System.out.println("Finished detection of " + detector.getSmellName() + "\n");
+            String time = calculateTimeConsumption(startTime);
+            String memory = formatMemoryConsumption(calculateMemoryConsumption() - startMemory);
+            System.out.println("Finished detection of " + detector.getSmellName() + " in " + time + " (" + memory + ")\n");
         }
 
         printSmells(Detector.getSmells());
@@ -30,5 +34,25 @@ public class EASmellDetector {
         for (EASmell smell : smells) {
             System.out.println(smell.toString());
         }
+    }
+
+    private static String calculateTimeConsumption(long start) {
+        long time = (System.nanoTime() - start) / 1000 / 1000;
+        if (time < 1000) return "" + time + " ms";
+        return "" + (time / 1000.) + " s";
+    }
+
+    private static long calculateMemoryConsumption() {
+        System.gc();
+        System.gc();
+        return Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+    }
+
+    private static String formatMemoryConsumption(long bytes) {
+        if (bytes < 0) return "0 Byte";
+        if (bytes < 1024) return "" + bytes + " Byte";
+        double b = bytes / 1024.;
+        if (b < 1024.) return "" + b + " KByte";
+        return "" + (b / 1024.) + " MByte";
     }
 }
