@@ -12,11 +12,15 @@ public class EASmellDetector {
 
         List<Detector> detectors = new ArrayList<>();
         detectors.add(new CyclicDependency());
+        detectors.add(new DeadComponent());
         detectors.add(new DenseStructure());
-        detectors.add(new WeakenedModularity());
+        detectors.add(new Documentation());
+        detectors.add(new Duplication());
         detectors.add(new HubLikeModularization());
+        detectors.add(new WeakenedModularity());
 
         System.out.print("\n");
+        long startTotalTime = System.nanoTime();
         for (Detector detector : detectors) {
             System.out.println("Start detection of " + detector.getSmellName() + " ...");
             long startTime = System.nanoTime();
@@ -28,6 +32,9 @@ public class EASmellDetector {
         }
 
         printSmells(Detector.getSmells());
+
+        String totalTime = calculateTimeConsumption(startTotalTime);
+        System.out.println("\nFinished detection in " + totalTime);
     }
 
     private static void printSmells(List<EASmell> smells) {
