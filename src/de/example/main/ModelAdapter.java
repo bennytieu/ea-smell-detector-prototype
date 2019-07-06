@@ -65,6 +65,30 @@ public class ModelAdapter {
         return res;
     }
 
+    public List<ElementType> getReferencedElementsOf(ElementType source, String type) {
+        List<ElementType> res = new ArrayList<>();
+        for (RelationshipType rel : getRelationships()) {
+            ElementType sour = (ElementType) rel.getSource();
+            if (sour.equals(source) && rel.getClass().getName().equals("de.example.model." + type)) {
+                ElementType tar = (ElementType) rel.getTarget();
+                res.add(tar);
+            }
+        }
+        return res;
+    }
+
+    public List<ElementType> getElementsWithReferenceTo(ElementType target, String type) {
+        List<ElementType> res = new ArrayList<>();
+        for (RelationshipType rel : getRelationships()) {
+            ElementType tar = (ElementType) rel.getTarget();
+            if (tar.equals(target) && rel.getClass().getName().equals("de.example.model." + type)) {
+                ElementType sour = (ElementType) rel.getSource();
+                res.add(sour);
+            }
+        }
+        return res;
+    }
+
     public List<PropertyDefinitionType> getPropertyDefinitions() {
         return model.getPropertyDefinitions().getPropertyDefinition();
     }
@@ -109,16 +133,16 @@ public class ModelAdapter {
         return res.toString();
     }
 
-    public List<String> getIdentifiersInLayer(String layer) {
+    public List<ElementType> getIdentifiersInLayer(String layer) {
         List<OrganizationType> l = model.getOrganizations().get(0).getItem().stream().filter(e -> e.getLabelGroup().get(0).getValue().toLowerCase().contains(layer.toLowerCase())).collect(Collectors.toList());
         if (l.isEmpty()) {
             return null;
         } else {
             l = l.get(0).getItem();
-            List<String> res = new ArrayList<>();
+            List<ElementType> res = new ArrayList<>();
             for (OrganizationType element : l) {
-                RealElementType tmp = (RealElementType) element.getIdentifierRef();
-                res.add(tmp.getIdentifier());
+                ElementType tmp = (ElementType) element.getIdentifierRef();
+                res.add(tmp);
             }
             return res;
         }
