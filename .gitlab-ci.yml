@@ -7,14 +7,14 @@ cache:
 compile:
   stage: build
   script:
-    - mvn compile
+    - mvn compile -B
 
 test:
   stage: test
   script:
-    - mvn test
+    - mvn test -B
 
 verify:
   stage: test
   script:
-    - mvn verify
+    - mvn verify -B
