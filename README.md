@@ -1,3 +1,6 @@
+[![pipeline status](https://git.rwth-aachen.de/ba-ea-smells/program/badges/develop/pipeline.svg)](https://git.rwth-aachen.de/ba-ea-smells/program/commits/develop)
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)](https://git.rwth-aachen.de/ba-ea-smells/program/blob/master/CONTRIBUTING.md)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 # Program (prototype)
 This repository contains everything concerning the prototype program to detect Enterprise Architecture Smells in EA Repositories.
 
