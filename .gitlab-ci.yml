@@ -20,6 +20,6 @@ test:
     - mvn $MAVEN_CLI_OPTS test
 
 verify:
-  stage: verify
+  stage: test
   script:
     - mvn $MAVEN_CLI_OPTS verify
