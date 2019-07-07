@@ -5,7 +5,7 @@ cache:
     - .m2/repository/
     - target/
 
-build:
+compile:
   stage: build
   script:
     - mvn compile
