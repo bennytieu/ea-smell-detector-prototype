@@ -13,6 +13,7 @@ test:
   stage: test
   script:
     - mvn test -B
+    - cat target/site/jacoco/index.html
 
 verify:
   stage: test
