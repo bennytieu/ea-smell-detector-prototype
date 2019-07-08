@@ -13,8 +13,8 @@ public class StrictLayersViolation extends Detector {
 
     public List<EASmell> detect() {
         List<RelationshipType> relationships = model.getRelationships();
-        List<ElementType> businessElements = model.getIdentifiersInLayer("Business");
-        List<ElementType> technologyElements = model.getIdentifiersInLayer("Technology");
+        List<ElementType> businessElements = model.getElementsInLayer("Business");
+        List<ElementType> technologyElements = model.getElementsInLayer("Technology");
         if (!businessElements.isEmpty() && !technologyElements.isEmpty()) {
             for (RelationshipType relationship : relationships) {
                 ElementType source = (ElementType) relationship.getSource();

@@ -14,7 +14,7 @@ public class ModelAdapter {
 
     private static ModelType model;
 
-    ModelAdapter(String xmlFile, String xsdSchema) {
+    public ModelAdapter(String xmlFile, String xsdSchema) {
         try {
             model = JAXBMarshalUnmarshal.unmarshal(xmlFile, ModelType.class, xsdSchema);
             System.out.println("Successfully loaded " + xmlFile);
@@ -65,25 +65,33 @@ public class ModelAdapter {
         return res;
     }
 
-    public List<ElementType> getReferencedElementsOf(ElementType source, String type) {
+    public List<ElementType> getReferencedElementsOf(ElementType source, String[] types) {
         List<ElementType> res = new ArrayList<>();
         for (RelationshipType rel : getRelationships()) {
             ElementType sour = (ElementType) rel.getSource();
-            if (sour.equals(source) && rel.getClass().getName().equals("de.example.model." + type)) {
-                ElementType tar = (ElementType) rel.getTarget();
-                res.add(tar);
+            if (sour.equals(source)) {
+                for (String type : types) {
+                    if (rel.getClass().getName().equals("de.example.model." + type)) {
+                        ElementType tar = (ElementType) rel.getTarget();
+                        res.add(tar);
+                    }
+                }
             }
         }
         return res;
     }
 
-    public List<ElementType> getElementsWithReferenceTo(ElementType target, String type) {
+    public List<ElementType> getElementsWithReferenceTo(ElementType target, String[] types) {
         List<ElementType> res = new ArrayList<>();
         for (RelationshipType rel : getRelationships()) {
             ElementType tar = (ElementType) rel.getTarget();
-            if (tar.equals(target) && rel.getClass().getName().equals("de.example.model." + type)) {
-                ElementType sour = (ElementType) rel.getSource();
-                res.add(sour);
+            if (tar.equals(target)) {
+                for (String type : types) {
+                    if (rel.getClass().getName().equals("de.example.model." + type)) {
+                        ElementType sour = (ElementType) rel.getSource();
+                        res.add(sour);
+                    }
+                }
             }
         }
         return res;
@@ -133,11 +141,9 @@ public class ModelAdapter {
         return res.toString();
     }
 
-    public List<ElementType> getIdentifiersInLayer(String layer) {
+    public List<ElementType> getElementsInLayer(String layer) {
         List<OrganizationType> l = model.getOrganizations().get(0).getItem().stream().filter(e -> e.getLabelGroup().get(0).getValue().toLowerCase().contains(layer.toLowerCase())).collect(Collectors.toList());
         if (l.isEmpty()) {
-            return new ArrayList<>();
-        } else if (l.get(0).getItem().isEmpty()) {
             return new ArrayList<>();
         } else {
             l = l.get(0).getItem();
