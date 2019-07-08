@@ -8,8 +8,8 @@ import java.util.List;
 public abstract class Detector {
     static ModelAdapter model;
     static List<EASmell> smells;
-    String smellName;
     List<EASmell> result;
+    private String smellName;
 
     Detector() {
         smells = new ArrayList<>();

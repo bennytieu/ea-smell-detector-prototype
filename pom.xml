@@ -56,6 +56,9 @@
                     <excludes>
                         <exclude>de/example/model/*</exclude>
                         <exclude>de/example/main/*</exclude>
+                        <exclude>de/example/smells/Constants.class</exclude>
+                        <exclude>de/example/smells/EASmell.class</exclude>
+                        <!-- <exclude>de/example/smells/Detector.java</exclude> -->
                     </excludes>
                 </configuration>
                 <executions>
