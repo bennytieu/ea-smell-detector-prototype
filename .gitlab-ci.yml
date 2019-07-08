@@ -19,3 +19,14 @@ verify:
   stage: test
   script:
     - mvn verify -B
+
+pages:
+  stage: deploy
+  dependencies:
+    - test
+  script:
+    - mkdir public
+    - mv target/site/jacoco/index.html public
+  artifacts:
+    paths:
+      - public
