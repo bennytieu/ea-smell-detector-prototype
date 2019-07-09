@@ -145,6 +145,8 @@ public class ModelAdapter {
         List<OrganizationType> l = model.getOrganizations().get(0).getItem().stream().filter(e -> e.getLabelGroup().get(0).getValue().toLowerCase().contains(layer.toLowerCase())).collect(Collectors.toList());
         if (l.isEmpty()) {
             return new ArrayList<>();
+        } else if (l.get(0).getItem().isEmpty()) {
+            return new ArrayList<>();
         } else {
             l = l.get(0).getItem();
             List<ElementType> res = new ArrayList<>();

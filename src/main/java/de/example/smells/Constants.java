@@ -11,6 +11,8 @@ class Constants {
     static final int LARGE_FAN_IN = 10;
     static final int LARGE_FAN_OUT = 10;
 
+    static final int MAX_SERVICE_CHAIN_LENGTH = 4;
+
     static final double MODULARITY_RATIO = 1;
 
 }

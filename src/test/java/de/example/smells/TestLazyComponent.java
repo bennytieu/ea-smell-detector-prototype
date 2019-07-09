@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestCyclicDependency {
+class TestLazyComponent {
 
-    private CyclicDependency detector;
+    private LazyComponent detector;
 
     @BeforeAll
     void init() {
-        ModelAdapter model = new ModelAdapter("Test.xml", null);
+        ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
         Detector.setModel(model);
-        detector = new CyclicDependency();
+        detector = new LazyComponent();
     }
 
     @Test
     void test() {
-        assertEquals(detector.detect().size(), 6);
+        assertEquals(detector.detect().size(), 1);
     }
 }

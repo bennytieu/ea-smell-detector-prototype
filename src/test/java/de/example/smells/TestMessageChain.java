@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestCyclicDependency {
+class TestMessageChain {
 
-    private CyclicDependency detector;
+    private MessageChain detector;
 
     @BeforeAll
     void init() {
         ModelAdapter model = new ModelAdapter("Test.xml", null);
         Detector.setModel(model);
-        detector = new CyclicDependency();
+        detector = new MessageChain();
     }
 
     @Test
     void test() {
-        assertEquals(detector.detect().size(), 6);
+        assertEquals(detector.detect().size(), 1);
     }
 }

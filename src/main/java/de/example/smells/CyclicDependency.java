@@ -24,16 +24,16 @@ public class CyclicDependency extends Detector {
         int currentSize = 0;
         Set<ElementType> referencedElements = new HashSet<>(model.getReferencedElementsOf(element));
         while (referencedElements.size() > currentSize) {
+            if (referencedElements.contains(element)) {
+                addToSmells(new EASmell(getSmellName(), element));
+                break;
+            }
             currentSize = referencedElements.size();
             Set<ElementType> additionalElements = new HashSet<>();
             for (ElementType e : referencedElements) {
                 additionalElements.addAll(model.getReferencedElementsOf(e));
             }
             referencedElements.addAll(additionalElements);
-        }
-        if (referencedElements.contains(element)) {
-            EASmell cd = new EASmell(getSmellName(), element);
-            addToSmells(cd);
         }
     }
 }

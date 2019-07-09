@@ -17,6 +17,8 @@ public class EASmellDetector {
         detectors.add(new Documentation());
         detectors.add(new Duplication());
         detectors.add(new HubLikeModularization());
+        detectors.add(new LazyComponent());
+        detectors.add(new MessageChain());
         detectors.add(new SharedPersistency());
         detectors.add(new StrictLayersViolation());
         detectors.add(new WeakenedModularity());
