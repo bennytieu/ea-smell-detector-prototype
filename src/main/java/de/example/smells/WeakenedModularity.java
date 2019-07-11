@@ -31,4 +31,27 @@ public class WeakenedModularity extends Detector {
         }
         return result;
     }
+
+    // cluster scope
+//    public List<EASmell> detect() {
+//        for (ElementType element : model.getElements()) {
+//            Set<ElementType> cluster = model.getCluster(element);
+//            int internal = 0;
+//            int external = 0;
+//            for (RelationshipType relationship : model.getRelationships()) {
+//                ElementType target = (ElementType) relationship.getTarget();
+//                ElementType source = (ElementType) relationship.getSource();
+//                if (cluster.contains(source) && cluster.contains(target)) {
+//                    internal++;
+//                } else if ((cluster.contains(source) && !cluster.contains(target)) || (cluster.contains(target) && !cluster.contains(source))) {
+//                    external++;
+//                }
+//            }
+//            double mr = (double) internal / (double) external;
+//            if (mr < MODULARITY_RATIO && mr > 0) {
+//                addToSmells(new EASmell("Weakened Modularity", element, " with a modularity ratio of " + mr));
+//            }
+//        }
+//        return result;
+//    }
 }
