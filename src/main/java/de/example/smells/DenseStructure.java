@@ -10,6 +10,7 @@ public class DenseStructure extends Detector {
         super("Dense Structure");
     }
 
+    // could use clustering coefficient
     public List<EASmell> detect() {
         double v = model.getElements().size();
         double e = model.getRelationships().size();

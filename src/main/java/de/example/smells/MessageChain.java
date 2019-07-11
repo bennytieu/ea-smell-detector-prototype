@@ -14,13 +14,11 @@ public class MessageChain extends Detector {
         super("Message Chain");
     }
 
+    // restricted to Service Chains
     public List<EASmell> detect() {
-        List<ElementType> elements = model.getElements().stream().filter(e -> e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
-        //remove cycles
-        for (ElementType element : elements) {
-            List<ElementType> current = new ArrayList<>();
-            current.add(element);
-            List<ElementType> chain = getServiceChain(element, current);
+        List<ElementType> serviceElements = model.getElements().stream().filter(e -> e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
+        for (ElementType element : serviceElements) {
+            List<ElementType> chain = getServiceChain(element);
             if (chain.size() > MAX_SERVICE_CHAIN_LENGTH) {
                 StringBuilder elementsInChain = new StringBuilder();
                 for (ElementType e : chain) {
@@ -31,6 +29,12 @@ public class MessageChain extends Detector {
             }
         }
         return result;
+    }
+
+    private List<ElementType> getServiceChain(ElementType element) {
+        List<ElementType> current = new ArrayList<>();
+        current.add(element);
+        return getServiceChain(element, current);
     }
 
     private List<ElementType> getServiceChain(ElementType start, List<ElementType> current) {

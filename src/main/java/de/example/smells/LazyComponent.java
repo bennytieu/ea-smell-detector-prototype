@@ -12,6 +12,7 @@ public class LazyComponent extends Detector {
         super("Lazy Component");
     }
 
+    // detect poltergeists by name
     public List<EASmell> detect() {
         String[] lazyNames = {"controller", "manager"};
         List<ElementType> lazyElements = model.getElements().stream().filter(e -> {

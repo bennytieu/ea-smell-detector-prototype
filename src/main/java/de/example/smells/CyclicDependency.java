@@ -22,18 +22,23 @@ public class CyclicDependency extends Detector {
 
     private void detectCyclicDependency(ElementType element) {
         int currentSize = 0;
-        Set<ElementType> referencedElements = new HashSet<>(model.getReferencedElementsOf(element));
-        while (referencedElements.size() > currentSize) {
-            if (referencedElements.contains(element)) {
+        Set<ElementType> reachableElements = new HashSet<>(model.getReferencedElementsOf(element));
+        // while new elements were reached
+        while (reachableElements.size() > currentSize) {
+            if (reachableElements.contains(element)) {
                 addToSmells(new EASmell(getSmellName(), element));
                 break;
             }
-            currentSize = referencedElements.size();
-            Set<ElementType> additionalElements = new HashSet<>();
-            for (ElementType e : referencedElements) {
-                additionalElements.addAll(model.getReferencedElementsOf(e));
-            }
-            referencedElements.addAll(additionalElements);
+            currentSize = reachableElements.size();
+            reachableElements.addAll(getAdditionalElements(reachableElements));
         }
+    }
+
+    private Set<ElementType> getAdditionalElements(Set<ElementType> reachableElements) {
+        Set<ElementType> additionalElements = new HashSet<>();
+        for (ElementType e : reachableElements) {
+            additionalElements.addAll(model.getReferencedElementsOf(e));
+        }
+        return additionalElements;
     }
 }
