@@ -39,6 +39,8 @@ public class EASmellDetector {
 
         String totalTime = calculateTimeConsumption(startTotalTime);
         System.out.println("\nFinished detection in " + totalTime);
+
+        System.out.println(model.getCluster(model.getElementByIdentifier("id-7281a6e6-6586-4fa5-8d27-6cb69cfc1e93")));
     }
 
     private static void printSmells(List<EASmell> smells) {

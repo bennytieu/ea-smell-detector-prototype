@@ -5,9 +5,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.namespace.QName;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ModelAdapter {
@@ -160,6 +158,42 @@ public class ModelAdapter {
 
     public List<Diagram> getViews() {
         return model.getViews().getDiagrams().getView();
+    }
+
+    // a cluster is in one layer and is related with structural relations to each other
+    public Set<ElementType> getCluster(ElementType element) {
+        Set<ElementType> elementAsSet = new HashSet<>();
+        elementAsSet.add(element);
+        List<ElementType> businessElements = getElementsInLayer("Business");
+        if (businessElements.contains(element)) {
+            return getCluster(elementAsSet, businessElements);
+        } else {
+            List<ElementType> applicationElements = getElementsInLayer("Application");
+            if (applicationElements.contains(element)) {
+                return getCluster(elementAsSet, applicationElements);
+            } else {
+                List<ElementType> technologyElements = getElementsInLayer("Technology");
+                if (technologyElements.contains(element)) {
+                    return getCluster(elementAsSet, technologyElements);
+                }
+                return elementAsSet;
+            }
+        }
+    }
+
+    private Set<ElementType> getCluster(Set<ElementType> elements, List<ElementType> elementsInSameLayer) {
+        Set<ElementType> res = new HashSet<>(elements);
+        String[] structuralRelationsOut = {"Aggregation", "Realization", "Composition"};
+        String[] structuralRelationsIn = {"Assignment"};
+        for (ElementType element : elements) {
+            Set<ElementType> children = new HashSet<>(getReferencedElementsOf(element, structuralRelationsOut));
+            children.addAll(getElementsWithReferenceTo(element, structuralRelationsIn));
+            children = children.stream().filter(elementsInSameLayer::contains).collect(Collectors.toSet());
+            if (!children.isEmpty()) {
+                res.addAll(getCluster(children, elementsInSameLayer));
+            }
+        }
+        return res;
     }
 
 }
