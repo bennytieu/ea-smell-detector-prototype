@@ -13,8 +13,7 @@ public class CyclicDependency extends Detector {
     }
 
     public List<EASmell> detect() {
-        List<ElementType> elements = model.getElements();
-        for (ElementType element : elements) {
+        for (ElementType element : model.getElements()) {
             detectCyclicDependency(element);
         }
         return result;

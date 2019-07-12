@@ -7,9 +7,11 @@ import java.util.List;
 
 public class EASmellDetector {
     public static void main(String[] args) {
+        // parsing of input xml to this ModelAdapter
         ModelAdapter model = new ModelAdapter(args[0], args.length == 2 ? args[1] : null);
         Detector.setModel(model);
 
+        // register detectors
         List<Detector> detectors = new ArrayList<>();
         detectors.add(new CyclicDependency());
         detectors.add(new DeadComponent());
@@ -23,6 +25,7 @@ public class EASmellDetector {
         detectors.add(new StrictLayersViolation());
         detectors.add(new WeakenedModularity());
 
+        // detect each smell
         System.out.print("\n");
         long startTotalTime = System.nanoTime();
         for (Detector detector : detectors) {
@@ -35,6 +38,8 @@ public class EASmellDetector {
             System.out.println("Finished detection of " + detector.getSmellName() + " in " + time + " (" + memory + ")\n");
         }
 
+        // print total result
+        System.out.println("The following " + Detector.getSmells().size() + " smells were detected:");
         printSmells(Detector.getSmells());
 
         String totalTime = calculateTimeConsumption(startTotalTime);

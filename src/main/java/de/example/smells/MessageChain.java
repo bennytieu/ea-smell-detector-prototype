@@ -40,6 +40,7 @@ public class MessageChain extends Detector {
     private List<ElementType> getServiceChain(ElementType start, List<ElementType> current) {
         List<ElementType> referencedServiceElements = model.getReferencedElementsOf(start).stream().filter(e -> e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
         List<ElementType> res = new ArrayList<>();
+        // no further referenced services
         if (referencedServiceElements.isEmpty()) {
             res.add(start);
             return res;

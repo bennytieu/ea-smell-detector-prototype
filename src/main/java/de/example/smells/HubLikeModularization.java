@@ -14,8 +14,7 @@ public class HubLikeModularization extends Detector {
     }
 
     public List<EASmell> detect() {
-        List<ElementType> elements = model.getElements();
-        for (ElementType element : elements) {
+        for (ElementType element : model.getElements()) {
             int fanIn = model.getElementsWithReferenceTo(element).size();
             int fanOut = model.getReferencedElementsOf(element).size();
             if (fanIn > LARGE_FAN_IN && fanOut > LARGE_FAN_OUT) {

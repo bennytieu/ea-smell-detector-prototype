@@ -19,6 +19,6 @@ class TestWeakenedModularity {
 
     @Test
     void test() {
-        assertEquals(detector.detect().size(), 0);
+        assertEquals(detector.detect().size(), 3);
     }
 }

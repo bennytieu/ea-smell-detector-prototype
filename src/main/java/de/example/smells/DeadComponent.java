@@ -13,24 +13,27 @@ public class DeadComponent extends Detector {
     }
 
     public List<EASmell> detect() {
-        List<ElementType> elements = model.getElements();
-        for (ElementType element : elements) {
-            Set<ElementType> cluster = model.getCluster(element);
-            boolean used = false;
-            for (RelationshipType relationship : model.getRelationships()) {
-                ElementType target = (ElementType) relationship.getTarget();
-                ElementType source = (ElementType) relationship.getSource();
-                // relationship to element outside the cluster -> so it is used
-                if ((cluster.contains(source) && !cluster.contains(target)) || (cluster.contains(target) && !cluster.contains(source))) {
-                    used = true;
-                    break;
-                }
-            }
-            if (!used) {
-                addToSmells(new EASmell(getSmellName(), element));
-            }
+        for (ElementType element : model.getElements()) {
+            detectDeadComponent(element);
         }
         return result;
+    }
+
+    private void detectDeadComponent(ElementType element) {
+        Set<ElementType> cluster = model.getCluster(element);
+        boolean used = false;
+        for (RelationshipType relationship : model.getRelationships()) {
+            ElementType target = (ElementType) relationship.getTarget();
+            ElementType source = (ElementType) relationship.getSource();
+            // relationship to element outside the cluster -> so it is used
+            if ((cluster.contains(source) && !cluster.contains(target)) || (cluster.contains(target) && !cluster.contains(source))) {
+                used = true;
+                break;
+            }
+        }
+        if (!used) {
+            addToSmells(new EASmell(getSmellName(), element));
+        }
     }
 
 }
