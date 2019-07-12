@@ -36,7 +36,7 @@
                                     <directory>${basedir}</directory>
                                     <includes>
                                         <include>CentralModel.xml</include>
-                                        <include>Test.xml</include>
+                                        <include>SmellExample.xml</include>
                                         <include>archimate3_Diagram.xsd</include>
                                         <include>archimate3_View.xsd</include>
                                         <include>archimate3_Model.xsd</include>
