@@ -19,6 +19,6 @@ class TestDuplication {
 
     @Test
     void test() {
-        assertEquals(detector.detect().size(), 2);
+        assertEquals(detector.detect().size(), 0);
     }
 }

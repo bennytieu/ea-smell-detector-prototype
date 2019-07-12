@@ -4,7 +4,7 @@ import de.example.model.ElementType;
 
 import java.util.List;
 
-import static de.example.smells.Constants.DUPLICATED_WORDS;
+import static de.example.smells.Constants.DUPLICATED_WORDS_RATIO;
 
 public class Duplication extends Detector {
 
@@ -16,9 +16,9 @@ public class Duplication extends Detector {
         List<ElementType> elements = model.getElements();
         for (int i = 0; i < elements.size() - 1; i++) {
             for (int j = i + 1; j < elements.size(); j++) {
-                // only if in same layer
+                // only if same element type
                 if (elements.get(i).getClass().getSimpleName().equals(elements.get(j).getClass().getSimpleName())) {
-                    //String[] ei = elements.get(i).getNameGroup().get(0).getValue().split(" ");
+                    String[] ei = elements.get(i).getNameGroup().get(0).getValue().split(" ");
                     String[] ej = elements.get(j).getNameGroup().get(0).getValue().split(" ");
                     int duplicatedWords = 0;
                     for (String w : ej) {
@@ -26,8 +26,11 @@ public class Duplication extends Detector {
                             duplicatedWords++;
                         }
                     }
-                    if (duplicatedWords > DUPLICATED_WORDS) {
-                        addToSmells(new EASmell(getSmellName(), elements.get(i), " with the " + elements.get(j).getClass().getSimpleName() + " \"" + elements.get(j).getNameGroup().get(0).getValue() + "\" (" + elements.get(j).getIdentifier() + ")"));
+//                    if (duplicatedWords > DUPLICATED_WORDS) {
+//                        addToSmells(new EASmell(getSmellName(), elements.get(i), " together with" + " \"" + elements.get(j).getNameGroup().get(0).getValue() + "\" (" + elements.get(j).getIdentifier() + ")"));
+//                    }
+                    if (((double) 2 * duplicatedWords) / (ei.length + ej.length) > DUPLICATED_WORDS_RATIO) {
+                        addToSmells(new EASmell(getSmellName(), elements.get(i), " together with" + " \"" + elements.get(j).getNameGroup().get(0).getValue() + "\" (" + elements.get(j).getIdentifier() + ")"));
                     }
                 }
             }

@@ -248,7 +248,7 @@
             <documentation xml:lang="de">One who drives car or taxi</documentation>
         </element>
         <element identifier="id-7eda7ef0-c57c-4403-93c0-cb0bccaf585e" xsi:type="BusinessRole">
-            <name xml:lang="de">Trvelling to airport</name>
+            <name xml:lang="de">Travelling to airport</name>
             <documentation xml:lang="de">Passengers, visitors travels to airport</documentation>
         </element>
         <element identifier="id-51b88d5b-5515-4e3b-9ce0-a33dcdd0b490" xsi:type="BusinessService">
