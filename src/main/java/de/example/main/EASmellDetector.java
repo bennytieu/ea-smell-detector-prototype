@@ -15,6 +15,7 @@ public class EASmellDetector {
         List<Detector> detectors = new ArrayList<>();
         detectors.add(new AmbiguousViewpoint());
         detectors.add(new CyclicDependency());
+        detectors.add(new DataService());
         detectors.add(new DeadComponent());
         detectors.add(new DenseStructure());
         detectors.add(new Documentation());

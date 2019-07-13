@@ -18,6 +18,7 @@ public abstract class Detector {
 
     Detector() {
         smells = new ArrayList<>();
+        result = new ArrayList<>();
     }
 
     Detector(String name) {
