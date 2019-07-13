@@ -22,6 +22,6 @@ class TestDuplication {
         ModelAdapter model = new ModelAdapter("SmellExample.xml", null);
         Detector.setModel(model);
         detector = new Duplication();
-        assertEquals(detector.detect().size(), 2);
+        assertEquals(detector.detect().size(), 1);
     }
 }

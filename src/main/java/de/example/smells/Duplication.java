@@ -2,6 +2,7 @@ package de.example.smells;
 
 import de.example.model.ElementType;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static de.example.smells.Constants.DUPLICATED_WORDS_RATIO;
@@ -18,18 +19,18 @@ public class Duplication extends Detector {
             for (int j = i + 1; j < elements.size(); j++) {
                 // only if same element type
                 if (elements.get(i).getClass().getSimpleName().equals(elements.get(j).getClass().getSimpleName())) {
-                    String[] ei = elements.get(i).getNameGroup().get(0).getValue().split(" ");
-                    String[] ej = elements.get(j).getNameGroup().get(0).getValue().split(" ");
+                    List<String> ei = Arrays.asList(elements.get(i).getNameGroup().get(0).getValue().split(" "));
+                    List<String> ej = Arrays.asList(elements.get(j).getNameGroup().get(0).getValue().split(" "));
                     int duplicatedWords = 0;
                     for (String w : ej) {
-                        if (elements.get(i).getNameGroup().get(0).getValue().contains(w)) {
+                        if (ei.contains(w)) {
                             duplicatedWords++;
                         }
                     }
 //                    if (duplicatedWords > DUPLICATED_WORDS) {
 //                        addToSmells(new EASmell(getSmellName(), elements.get(i), " together with" + " \"" + elements.get(j).getNameGroup().get(0).getValue() + "\" (" + elements.get(j).getIdentifier() + ")"));
 //                    }
-                    if (((double) 2 * duplicatedWords) / (ei.length + ej.length) > DUPLICATED_WORDS_RATIO) {
+                    if (((double) 2 * duplicatedWords) / (ei.size() + ej.size()) > DUPLICATED_WORDS_RATIO) {
                         addToSmells(new EASmell(getSmellName(), elements.get(i), " together with" + " \"" + elements.get(j).getNameGroup().get(0).getValue() + "\" (" + elements.get(j).getIdentifier() + ")"));
                     }
                 }
