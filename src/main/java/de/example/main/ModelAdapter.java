@@ -196,4 +196,9 @@ public class ModelAdapter {
         return res;
     }
 
+    public boolean isNotStructural(RelationshipType relationship) {
+        String type = relationship.getClass().getSimpleName();
+        return !type.contains("Realization") && !type.contains("Assignment") && !type.contains("Aggregation") && !type.contains("Composition");
+    }
+
 }
