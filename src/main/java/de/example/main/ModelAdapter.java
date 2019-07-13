@@ -140,20 +140,55 @@ public class ModelAdapter {
     }
 
     public List<ElementType> getElementsInLayer(String layer) {
-        List<OrganizationType> l = model.getOrganizations().get(0).getItem().stream().filter(e -> e.getLabelGroup().get(0).getValue().toLowerCase().contains(layer.toLowerCase())).collect(Collectors.toList());
-        if (l.isEmpty()) {
-            return new ArrayList<>();
-        } else if (l.get(0).getItem().isEmpty()) {
-            return new ArrayList<>();
+        // fallback if organizations is not specified in xml: use the alternative
+        if (model.getOrganizations().isEmpty()) {
+            return getElementsInLayerAlternative(layer);
         } else {
-            l = l.get(0).getItem();
-            List<ElementType> res = new ArrayList<>();
-            for (OrganizationType element : l) {
-                ElementType tmp = (ElementType) element.getIdentifierRef();
-                res.add(tmp);
+            List<OrganizationType> l = model.getOrganizations().get(0).getItem().stream().filter(e -> e.getLabelGroup().get(0).getValue().toLowerCase().contains(layer.toLowerCase())).collect(Collectors.toList());
+            if (l.isEmpty()) {
+                return new ArrayList<>();
+            } else if (l.get(0).getItem().isEmpty()) {
+                return new ArrayList<>();
+            } else {
+                l = l.get(0).getItem();
+                List<ElementType> res = new ArrayList<>();
+                for (OrganizationType element : l) {
+                    ElementType tmp = (ElementType) element.getIdentifierRef();
+                    res.add(tmp);
+                }
+                return res;
             }
-            return res;
         }
+    }
+
+    public List<ElementType> getElementsOfType(String[] types) {
+        return getElements().stream().filter(e -> {
+            for (String type : types) {
+                if (e.getClass().getSimpleName().equals(type)) {
+                    return true;
+                }
+            }
+            return false;
+        }).collect(Collectors.toList());
+    }
+
+    // alternative for getElementsInLayer when organizations is not specified in xml
+    public List<ElementType> getElementsInLayerAlternative(String layer) {
+        String[] types;
+        switch (layer) {
+            case "Business":
+                types = new String[]{"BusinessActor", "BusinessRole", "BusinessCollaboration", "BusinessInterface", "BusinessProcess", "BusinessFunction", "BusinessInteraction", "BusinessEvent", "BusinessService", "BusinessObject", "Contract", "Representation", "Product"};
+                break;
+            case "Application":
+                types = new String[]{"ApplicationComponent", "ApplicationCollaboration", "ApplicationInterface", "ApplicationFunction", "ApplicationInteraction", "ApplicationProcess", "ApplicationEvent", "ApplicationService", "DataObject"};
+                break;
+            case "Technology":
+                types = new String[]{"Node", "Device", "SystemSoftware", "TechnologyCollaboration", "TechnologyInterface", "Path", "CommunicationNetwork", "TechnologyFunction", "TechnologyProcess", "TechnologyInteraction", "TechnologyEvent", "TechnologyService", "Artifact", "Equipment", "Facility", "DistributionNetwork", "Material"};
+                break;
+            default:
+                types = new String[]{};
+        }
+        return getElementsOfType(types);
     }
 
     public List<Diagram> getViews() {
