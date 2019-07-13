@@ -22,6 +22,6 @@ class TestHubLikeModularization {
         ModelAdapter model = new ModelAdapter("SmellExample.xml", null);
         Detector.setModel(model);
         detector = new HubLikeModularization();
-        assertEquals(detector.detect().size(), 0);
+        assertEquals(detector.detect().size(), 1);
     }
 }

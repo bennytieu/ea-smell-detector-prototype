@@ -22,6 +22,6 @@ class TestWeakenedModularity {
         ModelAdapter model = new ModelAdapter("SmellExample.xml", null);
         Detector.setModel(model);
         detector = new WeakenedModularity();
-        assertEquals(detector.detect().size(), 1);
+        assertEquals(detector.detect().size(), 2);
     }
 }

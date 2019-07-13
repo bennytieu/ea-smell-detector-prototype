@@ -15,6 +15,7 @@ class TestAmbiguousViewpoint {
         Detector.setModel(model);
         detector = new AmbiguousViewpoint();
         assertEquals(detector.detect().size(), 1);
+        assertEquals(Detector.getSmells().size(), 1);
     }
 
     @Test
@@ -23,5 +24,6 @@ class TestAmbiguousViewpoint {
         Detector.setModel(model);
         detector = new AmbiguousViewpoint();
         assertEquals(detector.detect().size(), 1);
+        assertEquals(Detector.getSmells().size(), 1);
     }
 }
