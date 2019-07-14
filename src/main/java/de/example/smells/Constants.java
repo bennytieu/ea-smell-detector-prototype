@@ -2,6 +2,9 @@ package de.example.smells;
 
 class Constants {
 
+    // Chatty Service
+    static final int MAX_CHATTY_SERVICE_RELATIONS = 4;
+
     // Dense Structure
     static final double MAX_AVG_DEGREE = 1.75;
 

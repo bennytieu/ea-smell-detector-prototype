@@ -18,7 +18,7 @@ public class LazyComponent extends Detector {
         List<ElementType> lazyElements = model.getElements().stream().filter(e -> {
             for (LangStringType name : e.getNameGroup()) {
                 for (String lazyName : lazyNames) {
-                    if (name.getValue().contains(lazyName)) {
+                    if (name.getValue().toLowerCase().contains(lazyName)) {
                         return true;
                     }
                 }
