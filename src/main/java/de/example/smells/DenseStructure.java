@@ -32,7 +32,8 @@ public class DenseStructure extends Detector {
             for (RelationshipType relationship : model.getRelationships()) {
                 ElementType target = (ElementType) relationship.getTarget();
                 ElementType source = (ElementType) relationship.getSource();
-                if (cluster.contains(source) && cluster.contains(target)) {
+                // maybe restrict to non-structural relations?
+                if (/*model.isNotStructural(relationship) &&*/ cluster.contains(source) && cluster.contains(target)) {
                     e++;
                 }
             }
