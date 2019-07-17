@@ -12,7 +12,6 @@ class Constants {
     static final int MAX_DOCUMENTATION_LENGTH = 256;
 
     // Duplication
-    static final int DUPLICATED_WORDS = 2;
     static final double DUPLICATED_WORDS_RATIO = 0.75;
 
     // Hub-like Modularization

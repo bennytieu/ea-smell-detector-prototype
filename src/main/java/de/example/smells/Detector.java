@@ -12,7 +12,7 @@ public abstract class Detector {
     static ModelAdapter model;
     // detected smells of all different detectors
     static List<EASmell> smells;
-    // detected smells of this detector
+    // detected smells of this detector [can be returned by detect()]
     List<EASmell> result;
     private String smellName;
 

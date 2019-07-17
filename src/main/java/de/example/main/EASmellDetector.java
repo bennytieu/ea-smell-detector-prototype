@@ -5,6 +5,9 @@ import de.example.smells.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * main class that manages the different detectors
+ */
 public class EASmellDetector {
     public static void main(String[] args) {
         // parsing of input xml to this ModelAdapter

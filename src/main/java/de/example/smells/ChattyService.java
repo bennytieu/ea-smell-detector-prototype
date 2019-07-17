@@ -15,7 +15,8 @@ public class ChattyService extends Detector {
     }
 
     public List<EASmell> detect() {
-        List<ElementType> serviceElements = model.getElements().stream().filter(e -> e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
+        List<ElementType> serviceElements = model.getElements().stream().filter(e ->
+                e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
         for (ElementType serviceElement : serviceElements) {
             int relationCount = 0;
             for (RelationshipType relationship : model.getRelationships()) {

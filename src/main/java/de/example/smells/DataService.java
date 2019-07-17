@@ -12,7 +12,8 @@ public class DataService extends Detector {
     }
 
     public List<EASmell> detect() {
-        List<ElementType> serviceElements = model.getElements().stream().filter(e -> e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
+        List<ElementType> serviceElements = model.getElements().stream().filter(e ->
+                e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
         List<ElementType> dataElements = model.getElementsOfType(new String[]{"BusinessObject", "DataObject", "SystemSoftware"});
         for (ElementType serviceElement : serviceElements) {
             List<ElementType> referencedElements = model.getReferencedElementsOf(serviceElement);

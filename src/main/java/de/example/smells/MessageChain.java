@@ -16,7 +16,8 @@ public class MessageChain extends Detector {
 
     // restricted to Service Chains
     public List<EASmell> detect() {
-        List<ElementType> serviceElements = model.getElements().stream().filter(e -> e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
+        List<ElementType> serviceElements = model.getElements().stream().filter(e ->
+                e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
         for (ElementType element : serviceElements) {
             List<ElementType> chain = getServiceChain(element);
             if (chain.size() > MAX_SERVICE_CHAIN_LENGTH) {
@@ -38,7 +39,8 @@ public class MessageChain extends Detector {
     }
 
     private List<ElementType> getServiceChain(ElementType start, List<ElementType> current) {
-        List<ElementType> referencedServiceElements = model.getReferencedElementsOf(start).stream().filter(e -> e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
+        List<ElementType> referencedServiceElements = model.getReferencedElementsOf(start).stream().filter(e ->
+                e.getClass().getSimpleName().contains("Service")).collect(Collectors.toList());
         List<ElementType> res = new ArrayList<>();
         // no further referenced services
         if (referencedServiceElements.isEmpty()) {
