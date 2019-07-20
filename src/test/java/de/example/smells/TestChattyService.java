@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestDeadComponent {
+class TestChattyService {
 
-    private DeadComponent detector;
+    private ChattyService detector;
 
     @Test
     void testCentralModel() {
         ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
         Detector.setModel(model);
-        detector = new DeadComponent();
+        detector = new ChattyService();
         assertEquals(detector.detect().size(), 0);
     }
 
@@ -21,7 +21,7 @@ class TestDeadComponent {
     void testSmellExample() {
         ModelAdapter model = new ModelAdapter("SmellExample.xml", null);
         Detector.setModel(model);
-        detector = new DeadComponent();
-        assertEquals(detector.detect().size(), 2);
+        detector = new ChattyService();
+        assertEquals(detector.detect().size(), 1);
     }
 }

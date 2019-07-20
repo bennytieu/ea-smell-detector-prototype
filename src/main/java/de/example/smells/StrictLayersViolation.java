@@ -12,15 +12,16 @@ public class StrictLayersViolation extends Detector {
     }
 
     public List<EASmell> detect() {
-        List<RelationshipType> relationships = model.getRelationships();
         List<ElementType> businessElements = model.getElementsInLayer("Business");
         List<ElementType> technologyElements = model.getElementsInLayer("Technology");
         if (!businessElements.isEmpty() && !technologyElements.isEmpty()) {
-            for (RelationshipType relationship : relationships) {
+            for (RelationshipType relationship : model.getRelationships()) {
                 ElementType source = (ElementType) relationship.getSource();
                 ElementType target = (ElementType) relationship.getTarget();
-                if ((businessElements.contains(source) && technologyElements.contains(target) || (businessElements.contains(target) && technologyElements.contains(source)))) {
-                    addToSmells(new EASmell(getSmellName(), source, " with the " + target.getClass().getSimpleName() + " \"" + target.getNameGroup().get(0).getValue() + "\" (" + target.getIdentifier() + ")"));
+                if ((businessElements.contains(source) && technologyElements.contains(target) ||
+                        (businessElements.contains(target) && technologyElements.contains(source)))) {
+                    addToSmells(new EASmell(getSmellName(), source, " with the " + target.getClass().getSimpleName() + " \"" +
+                            target.getNameGroup().get(0).getValue() + "\" (" + target.getIdentifier() + ")"));
                 }
             }
         }

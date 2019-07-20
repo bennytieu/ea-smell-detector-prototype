@@ -14,8 +14,7 @@ public class Documentation extends Detector {
     }
 
     public List<EASmell> detect() {
-        List<ElementType> elements = model.getElements();
-        for (ElementType element : elements) {
+        for (ElementType element : model.getElements()) {
             for (PreservedLangStringType documentation : element.getDocumentation()) {
                 if (documentation.getValue().length() > MAX_DOCUMENTATION_LENGTH) {
                     addToSmells(new EASmell(getSmellName(), element, " with a documentation of length " + documentation.getValue().length()));

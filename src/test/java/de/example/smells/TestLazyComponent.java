@@ -5,23 +5,23 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestDeadComponent {
+class TestLazyComponent {
 
-    private DeadComponent detector;
+    private LazyComponent detector;
 
     @Test
     void testCentralModel() {
         ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
         Detector.setModel(model);
-        detector = new DeadComponent();
-        assertEquals(detector.detect().size(), 0);
+        detector = new LazyComponent();
+        assertEquals(detector.detect().size(), 1);
     }
 
     @Test
     void testSmellExample() {
         ModelAdapter model = new ModelAdapter("SmellExample.xml", null);
         Detector.setModel(model);
-        detector = new DeadComponent();
-        assertEquals(detector.detect().size(), 2);
+        detector = new LazyComponent();
+        assertEquals(detector.detect().size(), 1);
     }
 }

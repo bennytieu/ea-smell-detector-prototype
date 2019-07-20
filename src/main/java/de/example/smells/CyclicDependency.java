@@ -13,8 +13,7 @@ public class CyclicDependency extends Detector {
     }
 
     public List<EASmell> detect() {
-        List<ElementType> elements = model.getElements();
-        for (ElementType element : elements) {
+        for (ElementType element : model.getElements()) {
             detectCyclicDependency(element);
         }
         return result;
@@ -22,18 +21,23 @@ public class CyclicDependency extends Detector {
 
     private void detectCyclicDependency(ElementType element) {
         int currentSize = 0;
-        Set<ElementType> referencedElements = new HashSet<>(model.getReferencedElementsOf(element));
-        while (referencedElements.size() > currentSize) {
-            currentSize = referencedElements.size();
-            Set<ElementType> additionalElements = new HashSet<>();
-            for (ElementType e : referencedElements) {
-                additionalElements.addAll(model.getReferencedElementsOf(e));
+        Set<ElementType> reachableElements = new HashSet<>(model.getReferencedElementsOf(element));
+        // while new elements were reached
+        while (reachableElements.size() > currentSize) {
+            if (reachableElements.contains(element)) {
+                addToSmells(new EASmell(getSmellName(), element));
+                break;
             }
-            referencedElements.addAll(additionalElements);
+            currentSize = reachableElements.size();
+            reachableElements.addAll(getAdditionalElements(reachableElements));
         }
-        if (referencedElements.contains(element)) {
-            EASmell cd = new EASmell(getSmellName(), element);
-            addToSmells(cd);
+    }
+
+    private Set<ElementType> getAdditionalElements(Set<ElementType> reachableElements) {
+        Set<ElementType> additionalElements = new HashSet<>();
+        for (ElementType e : reachableElements) {
+            additionalElements.addAll(model.getReferencedElementsOf(e));
         }
+        return additionalElements;
     }
 }
