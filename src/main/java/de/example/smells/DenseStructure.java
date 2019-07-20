@@ -14,16 +14,6 @@ public class DenseStructure extends Detector {
         super("Dense Structure");
     }
 
-    // could use clustering coefficient
-    private void overallDenseStructure() {
-        double v = model.getElements().size();
-        double e = model.getRelationships().size();
-        double avgDegree = e / (v/* * (v - 1)*/);
-        if (avgDegree > MAX_AVG_DEGREE) {
-            addToSmells(new EASmell("Overall Dense Structure", null, " with average degree of " + avgDegree));
-        }
-    }
-
     public List<EASmell> detect() {
         overallDenseStructure();
         for (ElementType element : model.getElements()) {
@@ -42,5 +32,14 @@ public class DenseStructure extends Detector {
             }
         }
         return result;
+    }
+
+    private void overallDenseStructure() {
+        double v = model.getElements().size();
+        double e = model.getRelationships().size();
+        double avgDegree = e / (v/* * (v - 1)*/);
+        if (avgDegree > MAX_AVG_DEGREE) {
+            addToSmells(new EASmell("Overall Dense Structure", null, " with average degree of " + avgDegree));
+        }
     }
 }
