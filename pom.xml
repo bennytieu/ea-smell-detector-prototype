@@ -6,7 +6,7 @@
 
     <groupId>de.example.main</groupId>
     <artifactId>EASmellsDetection</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>EA Smell Detection</name>
 
     <properties>
