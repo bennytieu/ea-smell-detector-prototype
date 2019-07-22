@@ -31,14 +31,16 @@ public class EASmellDetector {
         detectors.add(new StrictLayersViolation());
         detectors.add(new WeakenedModularity());
 
-        // detect each smell
         System.out.print("\n");
         long startTotalTime = System.nanoTime();
         for (Detector detector : detectors) {
             System.out.println("Start detection of " + detector.getSmellName() + " ...");
             long startTime = System.nanoTime();
             long startMemory = calculateMemoryConsumption();
+
+            // detect each smell
             printSmells(detector.detect());
+
             String time = calculateTimeConsumption(startTime);
             String memory = formatMemoryConsumption(calculateMemoryConsumption() - startMemory);
             System.out.println("Finished detection of " + detector.getSmellName() + " in " + time + " (" + memory + ")\n");

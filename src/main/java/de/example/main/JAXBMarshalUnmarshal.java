@@ -12,6 +12,9 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.File;
 
+/**
+ * Class for binding XML to Java Objects using JAXB
+ */
 public class JAXBMarshalUnmarshal {
 
     /**
@@ -54,8 +57,6 @@ public class JAXBMarshalUnmarshal {
         marshaller.marshal(jaxbElement, new File(xmlFile));
     }
 
-    /*Schema schema = (xsdSchema == null || xsdSchema.trim().length() == 0)
-                ? null : schemaFactory.newSchema(new File(xsdSchema));*/
     private static Schema createSchema(String xsdSchema) throws SAXException {
         if (xsdSchema == null || xsdSchema.trim().length() == 0) {
             return null;

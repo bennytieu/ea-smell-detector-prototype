@@ -23,7 +23,8 @@ public class ChattyService extends Detector {
                 if (model.isNotStructural(relationship)) {
                     ElementType source = (ElementType) relationship.getSource();
                     ElementType target = (ElementType) relationship.getTarget();
-                    if (serviceElements.contains(source) && serviceElements.contains(target) && (serviceElement.equals(source) || serviceElement.equals(target))) {
+                    if (serviceElements.contains(source) && serviceElements.contains(target)
+                            && (serviceElement.equals(source) || serviceElement.equals(target))) {
                         relationCount++;
                     }
                 }

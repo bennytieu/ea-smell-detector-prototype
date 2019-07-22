@@ -28,8 +28,8 @@ public class Duplication extends Detector {
                         }
                     }
                     if (((double) 2 * duplicatedWords) / (ei.size() + ej.size()) > DUPLICATED_WORDS_RATIO) {
-                        addToSmells(new EASmell(getSmellName(), elements.get(i), " together with" + " \"" +
-                                elements.get(j).getNameGroup().get(0).getValue() + "\" (" + elements.get(j).getIdentifier() + ")"));
+                        addToSmells(new EASmell(getSmellName(), elements.get(i), " together with" + " \""
+                                + elements.get(j).getNameGroup().get(0).getValue() + "\" (" + elements.get(j).getIdentifier() + ")"));
                     }
                 }
             }

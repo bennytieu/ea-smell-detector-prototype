@@ -26,7 +26,8 @@ public class DeadComponent extends Detector {
             ElementType target = (ElementType) relationship.getTarget();
             ElementType source = (ElementType) relationship.getSource();
             // relationship to element outside the cluster -> so it is used
-            if ((cluster.contains(source) && !cluster.contains(target)) || (cluster.contains(target) && !cluster.contains(source))) {
+            if ((cluster.contains(source) && !cluster.contains(target))
+                    || (cluster.contains(target) && !cluster.contains(source))) {
                 used = true;
                 break;
             }

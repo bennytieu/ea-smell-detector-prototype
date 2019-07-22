@@ -13,7 +13,8 @@ public class AmbiguousViewpoint extends Detector {
     public List<EASmell> detect() {
         for (Diagram view : model.getViews()) {
             if (view.getViewpoint() == null) {
-                addToSmells(new EASmell(getSmellName(), null, " at the View \"" + view.getNameGroup().get(0).getValue() + "\" (" + view.getIdentifier() + ")"));
+                addToSmells(new EASmell(getSmellName(), null, " at the View \"" + view.getNameGroup().get(0).getValue()
+                        + "\" (" + view.getIdentifier() + ")"));
             }
         }
         return result;

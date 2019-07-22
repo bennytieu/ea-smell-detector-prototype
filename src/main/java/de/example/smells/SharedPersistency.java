@@ -12,8 +12,8 @@ public class SharedPersistency extends Detector {
     }
 
     public List<EASmell> detect() {
-        List<ElementType> databaseElements = model.getElements().stream().filter(e -> e.getClass().getSimpleName().equals("SystemSoftware") &&
-                (e.getNameGroup().get(0).getValue().contains("database") || e.getNameGroup().get(0).getValue().contains("DBMS"))).collect(Collectors.toList());
+        List<ElementType> databaseElements = model.getElements().stream().filter(e -> e.getClass().getSimpleName().equals("SystemSoftware")
+                && (e.getNameGroup().get(0).getValue().contains("database") || e.getNameGroup().get(0).getValue().contains("DBMS"))).collect(Collectors.toList());
         for (ElementType databaseElement : databaseElements) {
             String[] types = {"Association", "Realization", "Assignment"};
             List<ElementType> referencedElements = model.getReferencedElementsOf(databaseElement, types);

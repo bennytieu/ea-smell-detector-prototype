@@ -17,7 +17,8 @@ public class Documentation extends Detector {
         for (ElementType element : model.getElements()) {
             for (PreservedLangStringType documentation : element.getDocumentation()) {
                 if (documentation.getValue().length() > MAX_DOCUMENTATION_LENGTH) {
-                    addToSmells(new EASmell(getSmellName(), element, " with a documentation of length " + documentation.getValue().length()));
+                    addToSmells(new EASmell(getSmellName(), element, " with a documentation of length "
+                            + documentation.getValue().length()));
                     break;
                 }
             }

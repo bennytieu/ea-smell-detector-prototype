@@ -32,7 +32,8 @@ public class HubLikeModularization extends Detector {
                 }
             }
             if (fanIn > LARGE_FAN_IN && fanOut > LARGE_FAN_OUT) {
-                addToSmells(new EASmell("Hub-like Modularization", element, " with a total of " + (fanIn + fanOut) + " relations"));
+                addToSmells(new EASmell("Hub-like Modularization", element, " with a total of "
+                        + (fanIn + fanOut) + " relations"));
             }
         }
         return result;

@@ -20,8 +20,8 @@ public class StrictLayersViolation extends Detector {
                 ElementType target = (ElementType) relationship.getTarget();
                 if ((businessElements.contains(source) && technologyElements.contains(target) ||
                         (businessElements.contains(target) && technologyElements.contains(source)))) {
-                    addToSmells(new EASmell(getSmellName(), source, " with the " + target.getClass().getSimpleName() + " \"" +
-                            target.getNameGroup().get(0).getValue() + "\" (" + target.getIdentifier() + ")"));
+                    addToSmells(new EASmell(getSmellName(), source, " with the " + target.getClass().getSimpleName() + " \""
+                            + target.getNameGroup().get(0).getValue() + "\" (" + target.getIdentifier() + ")"));
                 }
             }
         }

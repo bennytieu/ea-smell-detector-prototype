@@ -25,8 +25,8 @@ public class WeakenedModularity extends Detector {
                 ElementType source = (ElementType) relationship.getSource();
                 if (cluster.contains(source) && cluster.contains(target)) {
                     internal++;
-                } else if (model.isNotStructural(relationship) &&
-                        ((cluster.contains(source) && !cluster.contains(target)) || (cluster.contains(target) && !cluster.contains(source)))) {
+                } else if (model.isNotStructural(relationship)
+                        && ((cluster.contains(source) && !cluster.contains(target)) || (cluster.contains(target) && !cluster.contains(source)))) {
                     external++;
                 }
             }
