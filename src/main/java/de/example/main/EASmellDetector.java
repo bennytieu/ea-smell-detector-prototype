@@ -33,6 +33,7 @@ public class EASmellDetector {
         detectors.add(new WeakenedModularity());
         detectors.add(new MultipleRelationships(Collections.singletonList("Serving"), 2));
         detectors.add(new MergeConflicts(Collections.singletonList("Assignment"), 2));
+        detectors.add(new RedundantRelationship(Collections.singletonList("Serving")));
 
         System.out.print("\n");
         long startTotalTime = System.nanoTime();
