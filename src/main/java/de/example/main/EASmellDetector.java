@@ -3,6 +3,7 @@ package de.example.main;
 import de.example.smells.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,6 +31,7 @@ public class EASmellDetector {
         detectors.add(new SharedPersistency());
         detectors.add(new StrictLayersViolation());
         detectors.add(new WeakenedModularity());
+        detectors.add(new MultipleRelationships(Collections.singletonList("Serving"), 2));
 
         System.out.print("\n");
         long startTotalTime = System.nanoTime();
