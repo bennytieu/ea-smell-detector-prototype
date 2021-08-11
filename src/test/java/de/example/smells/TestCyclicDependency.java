@@ -14,7 +14,7 @@ class TestCyclicDependency {
         ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
         Detector.setModel(model);
         detector = new CyclicDependency();
-        assertEquals(detector.detect().size(), 0);
+        assertEquals(detector.detect().size(), 2);
     }
 
     @Test

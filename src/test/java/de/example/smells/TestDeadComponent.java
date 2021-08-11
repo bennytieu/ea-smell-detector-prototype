@@ -14,7 +14,7 @@ class TestDeadComponent {
         ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
         Detector.setModel(model);
         detector = new DeadComponent();
-        assertEquals(detector.detect().size(), 0);
+        assertEquals(detector.detect().size(), 2);
     }
 
     @Test
@@ -22,6 +22,6 @@ class TestDeadComponent {
         ModelAdapter model = new ModelAdapter("SmellExample.xml", null);
         Detector.setModel(model);
         detector = new DeadComponent();
-        assertEquals(detector.detect().size(), 2);
+        assertEquals(detector.detect().size(), 3);
     }
 }

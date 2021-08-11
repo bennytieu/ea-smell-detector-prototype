@@ -14,7 +14,7 @@ class TestWeakenedModularity {
         ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
         Detector.setModel(model);
         detector = new WeakenedModularity();
-        assertEquals(detector.detect().size(), 3);
+        assertEquals(detector.detect().size(), 5);
     }
 
     @Test

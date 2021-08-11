@@ -22,6 +22,6 @@ class TestDenseStructure {
         ModelAdapter model = new ModelAdapter("SmellExample.xml", null);
         Detector.setModel(model);
         detector = new DenseStructure();
-        assertEquals(detector.detect().size(), 3);
+        assertEquals(detector.detect().size(), 2);
     }
 }

@@ -14,8 +14,8 @@ class TestAmbiguousViewpoint {
         ModelAdapter model = new ModelAdapter("CentralModel.xml", null);
         Detector.setModel(model);
         detector = new AmbiguousViewpoint();
-        assertEquals(detector.detect().size(), 1);
-        assertEquals(Detector.getSmells().size(), 1);
+        assertEquals(detector.detect().size(), 4);
+        assertEquals(Detector.getSmells().size(), 4);
     }
 
     @Test
